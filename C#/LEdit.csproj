@@ -1,0 +1,367 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <PropertyGroup>
+    <ProjectGuid>{976AB2D9-AC1F-4239-9B21-138B52C8CFD9}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LEdit</RootNamespace>
+    <AssemblyName>LEdit</AssemblyName>
+    <ApplicationIcon>img\L.ico</ApplicationIcon>
+    <StartWorkingDirectory>D:\LEdit</StartWorkingDirectory>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutLEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutLEdit.Designer.cs">
+      <DependentUpon>AboutLEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ContentSelectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContentSelectionDialog.Designer.cs">
+      <DependentUpon>ContentSelectionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileManagerForm.Designer.cs">
+      <DependentUpon>FileManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Content.cs" />
+    <Compile Include="NewProjectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewProjectDialog.Designer.cs">
+      <DependentUpon>NewProjectDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GradientBuffer.cs" />
+    <Compile Include="ItemEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemEditForm.Designer.cs">
+      <DependentUpon>ItemEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="L2FileManager.cs" />
+    <Compile Include="L2IP.cs" />
+    <Compile Include="L2Item.cs" />
+    <Compile Include="L2Map.cs" />
+    <Compile Include="L2MapBlock.cs" />
+    <Compile Include="L2MonsterHorde.cs" />
+    <Compile Include="L2WorldMap.cs" />
+    <Compile Include="L2WorldMapBlock.cs" />
+    <Compile Include="L2MapBlockSet.cs" />
+    <Compile Include="L2MapHeader.cs" />
+    <Compile Include="L2MapSprite.cs" />
+    <Compile Include="L2Monster.cs" />
+    <Compile Include="L2MonsterSprite.cs" />
+    <Compile Include="L2ROM.cs" />
+    <Compile Include="L2BattleScript.cs" />
+    <Compile Include="L2Spell.cs" />
+    <Compile Include="L2String.cs" />
+    <Compile Include="L2WorldMapBigBlock.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="L2MonsterAttackName.cs" />
+    <Compile Include="MapCharStartToolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapCharStartToolForm.Designer.cs">
+      <DependentUpon>MapCharStartToolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapDoorToolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapDoorToolForm.Designer.cs">
+      <DependentUpon>MapDoorToolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapResizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapResizeForm.Designer.cs">
+      <DependentUpon>MapResizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapWarpDoorToolForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapWarpDoorToolForm.Designer.cs">
+      <DependentUpon>MapWarpDoorToolForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonsterEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonsterEditForm.Designer.cs">
+      <DependentUpon>MonsterEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonsterSpriteEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonsterSpriteEditForm.Designer.cs">
+      <DependentUpon>MonsterSpriteEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressForm.Designer.cs">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Project.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScriptEditForm.Designer.cs">
+      <DependentUpon>ScriptEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SignConverter.cs" />
+    <Compile Include="MapSpriteEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapSpriteEditForm.Designer.cs">
+      <DependentUpon>MapSpriteEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SNES.cs" />
+    <Compile Include="MapEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapEditForm.Designer.cs">
+      <DependentUpon>MapEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
+    <EmbeddedResource Include="AboutLEdit.resx">
+      <DependentUpon>AboutLEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContentSelectionDialog.resx">
+      <DependentUpon>ContentSelectionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileManagerForm.resx">
+      <DependentUpon>FileManagerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewProjectDialog.resx">
+      <DependentUpon>NewProjectDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemEditForm.resx">
+      <DependentUpon>ItemEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapCharStartToolForm.resx">
+      <DependentUpon>MapCharStartToolForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapDoorToolForm.resx">
+      <DependentUpon>MapDoorToolForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapResizeForm.resx">
+      <DependentUpon>MapResizeForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapSpriteEditForm.resx">
+      <DependentUpon>MapSpriteEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapWarpDoorToolForm.resx">
+      <DependentUpon>MapWarpDoorToolForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonsterEditForm.resx">
+      <DependentUpon>MonsterEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonsterSpriteEditForm.resx">
+      <DependentUpon>MonsterSpriteEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapEditForm.resx">
+      <DependentUpon>MapEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptEditForm.resx">
+      <DependentUpon>ScriptEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\clear_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\maxim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\blob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\magic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\binary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\bush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\open_fnt_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\save_fnt_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\L.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\L16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\about_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\redo_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\undo_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="crystal\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\layer2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\layer1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\grid_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="crystal\color_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="crystal\mini_rect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\copy_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\paste_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\jump_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\dec_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\swap_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\new_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fnt assets\batch_import_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\motte.png" />
+  </ItemGroup>
+</Project>
