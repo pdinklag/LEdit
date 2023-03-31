@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="pdinklag/LEdit" default="compile">
+	<description>
+		LEdit build file for Apache Ant
+	</description>
+	
+	<property name="path.base" location="../Base" />
+	<property name="path.snes" location="../SNES" />
+	
+	<property name="java.src" location="./src" />
+	<property name="java.out" location="./classes" />
+	<property name="java.classpath" value=".;${path.base}/classes;${path.snes}/classes" />
+	
+	<property name="jar.file" value="./LEdit.jar" />
+
+	<target name="compile">
+		<!-- compile Base and SNES projects first -->
+		<ant dir="${path.base}" target="compile" inheritAll="false" />
+		<ant dir="${path.snes}" target="compile" inheritAll="false" />
+		
+		<mkdir dir="${java.out}" />
+		<javac
+			includeAntRuntime="false"
+			encoding="UTF-8"
+			srcdir="${java.src}"
+			destdir="${java.out}"
+			classpath="${java.classpath}" />
+	</target>
+	
+	<target name="run" depends="compile">
+		<java
+			classname="de.pdinklag.ledit.gui.MainFrame"
+			classpath="${java.classpath};${java.out};${java.src}"
+			fork="true" />
+	</target>
+	
+	<target name="jar" depends="compile">
+		<jar destfile="${jar.file}" manifest="${java.src}/META-INF/MANIFEST.MF">
+			<fileset dir="${path.base}/classes" includes="**/*.class" />
+			<fileset dir="${path.snes}/classes" includes="**/*.class" />
+			<fileset dir="${java.out}" includes="**/*.class" />
+			<fileset dir="${java.src}" includes="de/pdinklag/ledit/resources/**/*" />
+		</jar>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${java.out}" failonerror="false" />
+		<delete dir="${javadoc.out}" failonerror="false" />
+	</target>
+</project>
