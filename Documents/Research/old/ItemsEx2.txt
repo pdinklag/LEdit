@@ -1,0 +1,21 @@
+Kraftwasser:	35 04 24 00 1E 00 0B 00 24 00 1E 00 0B 00
+Zaubertrank:	35 06 24 01 2D 00 0B 00 24 01 2D 00 0B 00
+Lebensnektar:	35 04 24 00 05 00 0B 24 01 05 00 0B 00 24 00 05 00 0B 24 01 05 00 0B 00
+Krafttropfen:	25 04 1E 00
+Kopftropfen:	25 08 1E 00
+Blocktropfen:	25 0A 1E 00
+Psychosaft:		35 0F 24 08 03 00 05 00
+Mutschub:		35 10 24 09 03 00 05 00
+Lebenssaft:		35 09 24 02 03 00 05 00
+Gegengift:		35 13 26 00 64 00 26 00 64 00
+Aufwecken:		26 05 64 00
+Schrei:			26 04 64 00
+Wirbelball:		35 15 27 04 64 00
+Frostball:		35 1A 27 03 64 00
+Nebelball:		35 22 00
+Terrorball:		35 17 27 02 32 00
+Bumerang:		32 01 32 05 21 80 00 64 00 00 00
+Wumme:			32 01 32 05 21 80 00 C8 00 00 00
+Gotteshand:		35 02 00
+Glücksdegen:	37 20 64 10 00
+Silberdegen:	37 1F 10 00 00

@@ -1,0 +1,717 @@
+The "effect programming language":
+
+To define the behavior or effect of monsters, capsule monsters, items, 
+spells and IPs, the Lufia 2 developers have created a quite powerful 
+"ASM-like" programming language. I'll call this "effect programming 
+language" L2BASM: Lufia 2 Battle (or Behavior) Assembly.
+
+In "object oriented programming" terms, one could say that monsters, 
+capsule monsters and playable characters are "objects". The "behavior" 
+of an object is defined by a simple L2BASM script or subroutine, while 
+its "state" is determined by the value of some "registers" (which are 
+modified by L2BASM instructions).
+
+"Registers":
+
+During battle, each time a character (monster, capsule monster or party 
+member) attacks another character (the victim), what matters is:
+- the properties of the attack (is it ""elemental"? Does it affect 
+  status? ...).
+- the properties of the victim (is the  victim weak against some kind 
+  of elemental attack? ...).
+The L2BASM language":
+- defines theses properties by storing  values in 2 bytes memory locations 
+  I call "registers".
+- determines the effect of the attack oon the victim by comparing and 
+  manipulating the values stored in the registers (will the attack bounce 
+  back at attacker? Will the victim's status be afflicted? ...).
+- defines the "behavior" of monsters annd capsule monsters (and some 
+  items too) (which attack will the monster use? Will the monster attack 
+  more than one time in a same round? ...).
+
+Each register is represented by a number. Here's a list of registers:
+- register $27: holds the "element" of  the attack (when a monster 
+  attacks a party member, when a capsule monster attacks a monster, ...).
+- register $2A: holds the value of the  damage inflicted by the attack.
+- registers $8X ($80 -> $87): "general  purpose" registers. Each 
+  character involved in the current battle has his/her own set of 
+  eight $8X registers. Register $80 is often used for arithmetic 
+  and logical instructions, much like the accumulator of CPUs. 
+  Registers $85 and $86 are often used as "loop counters". By example, 
+  each time Daos uses Terror wave, the value $0005 is loaded in his 
+  register $86. This register is decremented by $0001 each time Daos uses 
+  another attack (Dark fry, Firebird, ...). As Daos can use Terror wave 
+  only when the value stored in his register $86 is $0000, 2 Terror wave 
+  attacks will always be separated by 5 other attacks.
+- register $52: related to the chances  the victim has to escape an 
+  Instant Death attack.
+- ...
+
+Here are the offsets of some registers in ZST save states taken during 
+batttle:
+
+- "Common" registers:
+
+Registers "shared" between the characters (monsters, capsule monsters, 
+party members) involved in the battle.
+
+[$20021:$20022]    register $00
+[$20023:$20024]    register $01
+...
+[$2005F:$20060]    register $1F 
+[$20061:$20062]    register $20 (flags for "attacker";
+                                 modified by opcode $32)
+[$20063:$20064]    register $21 (flags for targetted foes ("victims");
+                                 modified by opcode $32)
+                                bit 0: front row, left
+                                bit 1: front row, right
+                                bit 2: back row, left
+                                bit 3: back row, right
+                                bit 4: Capsule Monster
+                                => $0C 21 01 00: target front row, left
+                                   $0C 21 03 00: target front row
+                                   $0C 21 0C 00: target back row
+                                   $0C 21 10 00: target Capsule Monster
+[$20065:$20066]    register $22 ???
+[$20067:$20068]    register $23 Flags?
+                                bit 0: ???
+                                $0001 => Physical attack (opcode $28)
+                                $0004 => "Defends"
+                                $0005 => Physical damage (opcode $21)
+                                $0006 => "Excapes"
+                                $0007 => "Calls companions"
+                                $000A => Magical damage (opcode $22)
+                                $000C => "Checking situation."
+                                $0012 => Cast spell (for monsters) 
+[$20069:$2006A]    register $24 (monster to call ("Calls companions"), 
+                                 spell to cast)
+[$2006B:$2006C]    register $25 (attack name number;
+                                 modified by opcode $1E)
+[$2006D:$2006E]    register $26 ???
+[$2006F:$20070]    register $27 (damage element)
+[$20071:$20072]    register $28 (critical hit rate)
+[$20073:$20074]    register $29 (damage multiplier for critical hits)
+[$20075:$20076]    register $2A (damage value)
+[$20077:$20078]    register $2B (damage fluctuation term)
+[$20079:$2007A]    register $2C (damage fluctuation %) ???
+[$2007B:$2007C]    register $2D (damage value)
+[$2007D:$2007E]    register $2E (MP damage fluctuation term)
+[$2007F:$20080]    register $2F (MP damage fluctuation %) ???
+...
+[$200C3:$200C4]    register $51
+[$200C5:$200C6]    register $52 ('Instant Death'-related)
+...
+[$200D1:$200D2]    register $58 ('Sleep'-related)
+...
+[$2011F:$20120]    register $7F
+
+- "character specific" registers:
+
+Each character involved in a battle has his/her/its own set of 
+$8X registers ($80 -> $87)
+
+ - Maxim's registers:
+
+[$017D5:$017D6]    register $80
+[$017D7:$017D8]    register $81
+[$017D9:$017DA]    register $82
+[$017DB:$017DC]    register $83
+[$017DD:$017DE]    register $84
+[$017DF:$017E0]    register $85
+[$017E1:$017E2]    register $86
+[$017E3:$017E4]    register $87
+
+Note: registers $80, $81 and $82 are often used for "temporary storage" 
+      (during the execution of subroutines). The other $8X registers are 
+      often use for "permanent storage" (during a whole battle).
+      (to verify)
+
+- "Stat registers"
+
+They're another kind of character specific registers.
+  $00 => current HP
+  $01 => current MP
+  $02 => max HP
+  $03 => max MP
+  $04 => ATP
+  $05 => DFP
+  $06 => STR
+  $07 => AGL
+  $08 => INT
+  $09 => GUT
+  $0A => MGR
+  $0B => IP (+ the byte that follows it)
+  $0C => Level (+ the byte that follows it)
+  $0D => temp ATP+
+  $0E => temp DFP+
+  $0F => temp STR+
+  $10 => temp AGL+
+  $11 => temp INT+
+  $12 => temp GUT+
+  $13 => temp MGR+
+  $14 => Status (+ the byte that follows it)
+
+!!! star_reg($00) <> reg($00)
+    star_reg($01) <> reg($01)
+    star_reg($02) <> reg($02)
+    ...
+
+
+"Opcodes":
+
+$00            : end of "effect code"
+                 (execute effect code and "exit")
+                 The other instructions (except opcode $01) only manipulate
+                 registers (ex.: opcode $1E doesn't "directly" display a 
+                 monster attack name, it only write the attack number in the 
+                 appropriate register). Opcode $00 (and $01 too) provokes 
+                 the execution of the code (ex.: if the "attack name" 
+                 register holds an attack name number, the corresponding 
+                 attack name will be displayed).
+
+$01            : execute effect code (but don't "exit")
+                 (useful if you want to use several attacks on a same turn)
+                 (see Gold Dragon)
+
+$03 XX XX      : GOTO
+         $XX XX: jumping offset
+                 (see Gold Dragon)
+
+$04 XX XX      : ON_ERROR_GOTO
+                 if the previous "code" failed, jump.
+                 (ex.: trying to call a companion when the screen 
+                       is full (checked), 
+                       trying to cast a spell when no more MP (to check))
+         $XX XX: jumping offset
+                 (see Doben)
+
+$05 XX YY YY   : PROB_GOTO
+            $XX: probability of jumping ($00 -> $FF)
+         $YY YY: jump offset
+                 (see Doben)
+
+$06 XX YY YY ZZ ZZ
+               : IF reg($XX) == $YY YY: GOTO
+         $ZZ ZZ: jump offset
+                 (see Daos)
+
+$07 XX YY YY ZZ ZZ
+               : IF reg($XX) <> $YY YY: GOTO
+         $ZZ ZZ: jump offset
+                 (see Daos)
+
+$08 XX YY YY ZZ ZZ
+               : IF reg($XX) > $YY YY: GOTO
+         $ZZ ZZ: jump offset
+
+$09 XX YY YY ZZ ZZ
+               : IF reg($XX) < $YY YY: GOTO
+         $ZZ ZZ: jump offset
+
+$0A XX YY YY ZZ ZZ
+               : IF reg($XX) >= $YY YY: GOTO
+         $ZZ ZZ: jump offset
+
+$0B XX YY YY ZZ ZZ
+               : IF reg($XX) <= $YY YY: GOTO
+         $ZZ ZZ: jump offset
+
+$0C XX YY YY   : LOAD reg($XX), $YY YY
+                 Load $YY YY in "register" $XX
+
+      $XX YY YY: $4E 00 00 => protection against Poison
+                 $50 00 00 => protection against Silence
+                 $52 00 00 => protection against Instant death
+                 $54 00 00 => protection against Paralysis
+                 $56 00 00 => protection against Confusion
+                 $58 00 00 => protection against Sleep
+
+                 ! if bit 7 of the last byte is set 
+                   (generally: $0C XX YY 80)
+                   => LOAD reg($XX), reg($YY)
+                      Load the value "register" $YY in "register" $XX
+
+$0D XX YY YY   : ADD reg($XX), $YY YY
+                 Add $YY YY to "register" $XX
+
+$0E XX YY YY   : SUB reg($XX), $YY YY
+                 Substract $YY YY to "register" $XX
+
+$0F XX YY YY   : MUL reg($XX), $YY YY
+                 Multiply "register" $XX by $YY YY
+
+$10 XX YY YY   : DIV reg($XX), $YY YY
+                 Divide "register" $XX by $YY YY
+
+$11 XX         : RAND reg($XX)
+                 if n is the value stored in register $XX, 
+                 store a new value that is in range [0, n[
+                 (0 included, n excluded).
+                 See subroutine $42 26 00 (see Gold Fox).
+
+$12 XX XX      : ???
+
+$13 XX YY      : LOAD reg($XX), stat_reg($YY)
+                 Load ??? in "register" $XX
+            $YY: ???
+                 $00 => current HP
+                 $01 => current MP
+                 $02 => max HP
+                 $03 => max MP
+                 $04 => ATP
+                 $05 => DFP
+
+                 $08 => INT (?)
+
+                 Note: target first! (ex.: 32 06, 32 01)
+
+$14 XX YY      : LOAD stat_reg($YY), reg($XX)
+            $YY: stat_reg($YY)
+                 $00 => current HP
+                 $01 => current MP
+                 $02 => max HP
+                 $03 => max MP
+                 $04 => ATP
+                 $05 => DFP
+                 $06 => STR
+                 $07 => AGL
+                 $08 => INT
+                 $09 => GUT
+                 $0A => MGR
+                 $0B => IP
+                 $0C => Level
+                 $0D => temp ATP+
+                 $0E => temp DFP+
+                 $0F => temp STR+
+                 $10 => temp AGL+
+                 $11 => temp INT+
+                 $12 => temp GUT+
+                 $13 => temp MGR+
+                 $14 => Status (+ the byte that follows it)
+
+                 Note: target first! (ex.: 32 06)
+
+                 Ex.: last attack of the Master (monster):
+                      32 06 
+                            Target self
+                      14 01 00 
+                            LOAD stat_reg(HP), reg($01)
+                      28
+                            Physical attack
+                      (reg($01) = $0000 (probably)
+                       => Master reduces his HP to 0 before attacking self)
+
+
+$15 XX YY      : LOAD reg($XX), SELF_stat_reg($YY)
+                 same as:
+                 32 06
+                 13 XX YY
+
+$16 XX YY YY   : AND reg($XX), $YY YY
+
+$17 XX YY YY   : OR reg($XX), $YY YY
+
+$17 27 XX XX   : Add elemental power to attack
+                 (weapon effect of some rings) 
+         $XX XX: element
+                 $00 01 => vs Dragons ('Dragon ring')
+                 $00 20 => vs Sea enemies ('Sea ring')
+                 $10 00 => (Light) vs Undead enemies ('Undead ring')
+
+$18 XX YY YY   : EOR reg($XX), $YY YY
+
+$19 XX         : ???
+
+$1A XX         : NEG reg($XX)
+                 If the value stored in reg($XX) is n, store -n in reg($XX)
+                 Ex.:
+                 reg($87): $0003 (3)
+                 NEG reg($87) => reg($87): $FFFD (-3)
+
+                 ...
+                 $FFFD -> -3
+                 $FFFE -> -2
+                 $FFFF -> -1
+                 $0000 ->  0
+                 $0001 ->  1
+                 $0002 ->  2
+                 ...
+
+$1B XX         : ???
+
+$1D            : ???
+
+$1E XX         : Display a monster attack name
+            $XX: name number
+                 ...
+                 $7C => Devastation wave
+                 $7D => Eerie light
+                 $7E => Dark fry
+                 ...
+                 Effect on registers:
+                 - load $00XX in reg($25)
+
+$1F XX XX      : Add elemental power to attack
+                 (for some weapons and monster attacks) 
+         $XX XX: element
+                 $00 00 => Neutral
+                 $00 01 => Effective against Dragons
+                 $00 02 => Effective against Insects
+                 $00 04 => Ice
+                 $00 08 => Thunder
+                 $00 10 => Earth
+                 $00 20 => Effective against Sea enemies
+                 $01 00 => Wind (CM: 'Hard Hat', 'Bluebird', 'Winged Horse')
+                 $02 00 => Fire
+                 $04 00 => Water
+                 $08 00 => Soil (CM: 'Giant', 'Raddisher', 'Centaur')
+                 $10 00 => Light
+                 $20 00 => Shadow (Dark)
+                 $40 00 => Effective against Hard enemies
+                 $80 00 => Effective against Flying enemies
+
+                 Effect on registers:
+                 - load $XXXX in reg($27)
+
+$20 XX YY      : Enhanced critical hit rate
+            $XX: % chances of critical hit
+            $YY: damage multiplier for critical hits??? 
+                 (real DMG = DMG * $YY / $10)???
+                 Effect on registers:
+                 - load $00XX in reg($28)
+                 - load $00YY in reg($29)
+
+$21 XX XX YY YY ZZ
+               : Physical damage
+                 (for items (boomerangs, some balls), monster attacks, ...)
+         $XX XX: element
+         $YY YY: base damage
+            $ZZ: ???
+                 Effect on registers:
+                 - load $0005 in reg($23)
+                 - load $0020 in reg($26)
+                 - load element in reg($27)
+                 - load ($10000 - base damage) in reg($2A)
+                 - load $0020 in reg($2B)
+
+$22 XX XX YY YY ZZ
+               : Magical damage 
+                 (for spells)
+         $XX XX: element
+         $YY YY: base damage
+            $ZZ: ???
+                 Effect on registers:
+                 - load $000A in reg($23)
+                 - load $01DC in reg($26)
+                 - load element in reg($27)
+                 - load ($10000 - (base damage + INT)) in reg($2A)
+                 - load $0020 in reg($2B)
+
+Hypothesis: 21 => not reflected by Mirror
+                  damage dependent of row
+            22 => reflected by Mirror
+                  damage independent of row
+
+$23 78 00      : Weapon effect of the Bunny sword
+                 Effect on registers:
+                 - load $0020 in reg($26)
+                 - load ($10000 - base damage) in reg($2A)
+                 - load $0020 in reg($2B)
+
+$24 XX YY YY ZZ: Restoring effect
+            $XX: type
+                 $00 => HP recovery
+                 $01 => MP recovery
+                 $04 => ATP modifier
+                 $05 => DFP modifier
+                 $06 => STR modifier
+                 $07 => AGL modifier
+                 $08 => INT modifier
+                 $09 => GUT modifier
+                 $0A => MGR modifier
+            $ZZ: fluctuation term
+            restored HP/MP is in range(b.value - f.term, b.value + f.term)
+            (to check)
+
+                 Effect on registers:
+                 $XX = $00 =>
+                 - load $YYYY in reg($2A)
+                 - load $00ZZ in reg($2B)
+                 $XX = $01 =>
+                 - load $YYYY in reg($2D)
+                 - load $00ZZ in reg($2E)
+
+$25 XX YY      : Statistics up/down effect
+            $XX: type (affected stat)
+                 $04 => ATP
+                 $05 => DFP
+                 $07 => AGL
+                 $08 => INT
+                 $09 => GUT
+                 $0A => MGR
+            $YY: % "intensity" of the effect
+
+                 Effect on registers:
+                 - $XX = 00 => load $YY in reg($2C)
+                 - $XX = 01 => load $YY in reg($2F)
+                 - $XX = 02 => load $YY in reg($32)
+                 - $XX = 03 => load $YY in reg($35)
+                 - $XX = 04 => load $YY in reg($38)
+                 - $XX = 05 => load $YY in reg($3B)
+                 - $XX = 06 => load $YY in reg($3E)
+
+$26 XX YY      : Status recovering effect
+            $XX: type
+                 $00 => recover from Poisoning ('Antidote', 'Poison')
+                 $01 => recover from Silence
+                 $02 => recover from Death     ('Regain', ...)
+                 $03 => recover from Paralysis ('Mystery pin', 'Release')
+                 $04 => recover from Confusion ('Shriek')
+                 $05 => recover from Sleep     ('Waken')
+                 $07 => removes Mirror         (Erim's "Eerie light")
+                        (verified by hacking the Antidote item 
+                         (-> $26 07 64) and using one on a mirrored Selan)
+            $YY: success probability ($64 = 100%)
+
+                 Effect on registers:
+                 - $XX = 03 => load $YY in reg($55)
+
+$27 XX YY      : Status altering effect
+            $XX: type
+                 $00 => Poisoning
+                 $01 => Silence ('Deflect')
+                 $02 => Instant death
+                 $03 => Paralysis
+                 $04 => Confusion
+                 $05 => Sleep
+                 $06 => Status 6
+                 $07 => Mirror
+            $YY: success probability
+                 $0A => 10%
+                 $14 => 20%
+                 $19 => 25%
+                 $50 => 80%
+                 $64 => 100%
+
+                 Effect on registers:
+                 - $XX = 03 => load $YY in reg($54)
+
+$28            : Physical attack
+                 (for monsters; like $37 for characters???) 
+                 Effect on registers:
+                 - load $0001 in reg($23)
+
+$29            : "Defends" (Offensive effect)
+                 (for monsters / CM)
+                 Effect on registers:
+                 - load $0004 in reg($23)
+
+$2A            : "Escapes" (flees) (Offensive effect)
+                 (for monsters / CM)
+                 Effect on registers:
+                 - load $0006 in reg($23)
+
+$2B XX XX      : Use an item
+         $XX XX: item number (see Item Compendium)
+                 Ex.: 32 06 2B 01 00 => monster uses Charred newt on self
+
+$2C XX         : Cast spell
+                 (for monsters) 
+            $XX: spell number (see Spell Compendium)
+                 Effect on registers:
+                 - load $0012 in reg($23)
+                 - load $00XX in reg($24)
+
+$2D XX         : "Calls companions"
+                 (for monsters)
+            $XX: monster number (see Monster Compendium)
+                 $18 => Hound
+                 $19 => Doben
+
+                 Effect on registers:
+                 *If the monster can call companions:
+                 - load $0007 in reg($23)
+                 - load $00XX in reg($24)
+                 *Else:
+                 - load $0002 in reg($10)
+
+$2E            : ???
+                 Effect on registers:
+                 - load $000D in reg($23)
+
+$2F XX         : ???
+
+$30 XX         : ???
+
+$32 XX         : Target
+                 (for some weapons and items, for monster attacks)
+                 $32 01       => target one random foe
+                 $32 01 32 05 => target all foes
+                 $32 06       => target self
+                 $32 06 32 05 => target all allies
+                 ...
+
+$35 XX         : ???
+            $XX: type
+                 $01 => 'Warp' (spell and item)
+                 $02 => 'Escape' (spell and item), 'Providence'
+                 $03 => HP recovery? (see Potion) 
+                 $22 => 'Smoke ball' (escape from battle)
+                 $25 => 'Curselifter'
+
+$37            : Physical attack(?)
+                 (for weapons)
+                 (execute Weapon effect code?)
+
+$3E XX         : Display a Capsule Monster attack name???
+            $XX: name number???
+                 ...
+                 $21 => Fish kick
+                 ...
+                 $2A => Bubble blast
+                 ...
+
+$3F (for capsule monsters)
+
+$40 XX         : ???
+
+$41            : "Checking situation."
+                 (for monsters)
+                 (see Master)
+                 Effect on registers:
+                 - load $000C in reg($23)
+
+$42 XX 00      : Protections/weaknesses
+                 (for monsters, protective equipment)
+            $XX: $00 => Weakness against Fire
+            $XX: $01 => Weakness against Thunder
+            $XX: $02 => Weakness against Water
+            $XX: $03 => Weakness against Ice
+            $XX: $04 => Weakness against "Eff. against Flying" attacks
+                        + impervious to Earth
+            $XX: $05 => Weakness against Light
+            $XX: $06 => Protection against Fire
+            $XX: $07 => Protection against Thunder
+            $XX: $08 => Protection against Water
+            $XX: $09 => Protection against Ice
+            $XX: $0A => Protection against Light
+            $XX: $0B => Protection against "neutral elemental" attacks?
+            $XX: $0C => Weakness against "Eff. against Dragons" attacks
+            $XX: $0D => Weakness against Shadow
+            $XX: $0E => Protection against Shadow
+            $XX: $0F => makes you a "Hard enemy"? (to check...)
+            $XX: $10 => makes you an "insect"? (to check...)
+            $XX: $11 => Full protection against 
+                             Poisoning, 
+                             Silence, 
+                             Paralysis, 
+                             Confusion 
+                             and Sleep
+                         Not protection against 
+                             Instant Death, 
+                             Effect 6 
+                             and Mirror
+                        (For a lot of monsters (bosses...), 
+                         'Seethru cape', 'Seethru silk')
+            $XX: $12 => Full protection against Instant Death but 
+                        HP recovery spells inflict damage! (i.e.: you're
+                        undead)
+                        (Not used for items. Common for monsters)
+            $XX: $13 => ??? (For Core monsters only. Not used for items)
+                        (greatly reduce all magic DMG?)
+            $XX: $14 => (For Gorem monsters only. Not used for items)
+                        Protection against all attacks except "neutral 
+                        elemental" attacks?
+            $XX: $15 => ???
+            $XX: $16 => (Not used for items/monster/caps.monsters)
+            $XX: $17 => Protection against "hard" attacks?
+                        (Not used for items. Used for Demise and Leech 
+                         (monsters))
+            $XX: $18 => Good protection against a certain elemental 
+                        damage.
+                        0C 81 02 00 42 18 00 
+                         => Fire DMG greatly reduced (by 50 % ?)
+                        (Gold gloves, Gold shield, Holy shield, 
+                        Plati gloves, Plati shield, Rune gloves (IP effect))
+                        (not used for monsters)
+            $XX: $19 => Full protection against a certain elemental 
+                        damage.
+                        Ex.:
+                        (Apron shield, Bolt shield, Cryst shield, 
+                        0C 81 02 00 42 19 00 
+                         => Fire attacks miss
+                        Dark mirror, Flame shield, Water gaunt (IP effect))
+                        (not used for monsters)
+            $XX: $1A => "elemental mirror"
+                        0C 81 02 00 42 1A 00 
+                         => Fire attacks bounce back at attacker 
+                            (like with Mirror)
+                        (Agony helm, Aqua helm, Boom turban, 
+                        Brill helm, Hairpin, Ice hairband (IP effect))
+                        (not used for monsters)
+            $XX: $1B => ??? (not used for items / monsters)
+                 ...
+            $XX: $23 => ???
+            $XX: $24 => 'Miracle care' IP effect (Pearl shield):
+                        FULL PROTECTION AGAINST ALL DAMAGE!
+
+$47 78 00     54 XX     01     4F: 
+                 Cast spell
+                 (for IPs. Doesn't consume MPs) 
+            $XX: spell number (see Spell Compendium)
+
+$47 ?? ??      : ???
+
+$4F            : Exit without executing "effect code"???
+                 (see Gold Dragon)
+
+$51            : Dark reflector effect
+                 Effect on registers:
+                 - load $0002 in reg($61)???
+                 - ???
+
+$54 XX         : (cast spell?)
+                 (for IPs)
+            $XX: spell number
+                 Effect on registers:
+                 - load $0019 in reg($23)
+                 - load $00XX in reg($24)
+
+$55 XX YY YY   : "unsigned" division? (opcode $10 = "signed" division?)
+
+$56 XX XX      : used to specify how long the attack name must be 
+                 displayed.
+                 Min: $0001
+                 Max: the duration of the attack (animation) is the limit.
+                 Note: $56 00 00 => the attack name is diplayed until 
+                                    a new message must be displayed
+                                    (=> until the end of the attack).
+
+$57 XX XX YY   : For spells: effectiveness is increased by an item
+                 (ex.: the 'Thunder ring' for the 'Thunder' spell)
+         $XX XX: number of the item in the item list.
+            $YY: increasment???
+
+$58            : Special effect of Erim's Eerie light:
+                 empty all "temp" stat_reg of the target? (to check)
+
+$5A XX         : Call a battle animation (used for monster attacks/spells)
+            $XX: animation number
+                 ...
+                 $12 => Flash spell
+                 ...
+                 $6B => Eerie light
+                 ...
+                 $90 => Dark fry
+                 ...
+                 $98 => Devastation wave
+                 ...
+                 $9B => Dark reflector
+                 ...
+
+$5B            : Used in the final attack of the Master.
+                 Effect: makes you lose if the Master kills himself 
+                 (without this opcode, you would win).
+
+$5C            : Don't show the value of inflicted DMG 
+                 (but the DMG is inflicted nonetheless!)

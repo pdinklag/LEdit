@@ -1,0 +1,242 @@
+0000 - Weltkarte... Script Address: 0x13B41B
+0001 - Unterwasserkarte... Script Address: 0x13B43E
+0002 - Arek Daos Tempel... Script Address: 0x13B456
+0003 - Taia... Script Address: 0x13B8AA
+0004 - Taia... Script Address: 0x13C6B3
+0005 - Höhle der Geheimnisse... Script Address: 0x13DB03
+0006 - Höhle nach Tarika U1... Script Address: 0x13EC18
+0007 - Höhle nach Tarika U2... Script Address: 0x13ED29
+0008 - Tarika... Script Address: 0x13F2F4
+0009 - Tarika... Script Address: 0x13F84B
+0010 - Seehöhle U1... Script Address: 0x1481AD
+0011 - Seehöhle U2... Script Address: 0x1486EB
+0012 - Seehöhle U3... Script Address: 0x14872F
+0013 - Tempel nach Lunaria... Script Address: 0x148A25
+0014 - Wunderwald... Script Address: 0x148B9E
+0015 - Schloß Lunaria... Script Address: 0x149025
+0016 - Schloß Lunaria... Script Address: 0x14937E
+0017 - Schloß Lunaria U2... Script Address: 0x14A3C8
+0018 - Schloß Lunaria U3... Script Address: 0x14A58F
+0019 - Schloß Lunaria U4... Script Address: 0x14A5D2
+0020 - Schloß Lunaria U5... Script Address: 0x14A630
+0021 - Königreich Lunaria... Script Address: 0x14AC2C
+0022 - Königreich Lunaria... Script Address: 0x14B062
+0023 - Nordtempel Lunaria... Script Address: 0x14B4AA
+0024 - Nordwesthöhle Lunaria U1... Script Address: 0x14BB24
+0025 - Nordwesthöhle Lunaria U2... Script Address: 0x14C1C6
+0026 - Nordwesthöhle Lunaria U3... Script Address: 0x14C1DE
+0027 - Nordwesthöhle Lunaria U4... Script Address: 0x14C1F6
+0028 - Tanbel... Script Address: 0x14C2CC
+0029 - Tanbel... Script Address: 0x14D52C
+0030 - ... Script Address: 0x14E1BF
+0031 - Südostturm Tanbel EG... Script Address: 0x14E1D7
+0032 - Südostturm Tanbel 1. ST... Script Address: 0x14E1FD
+0033 - Südostturm Tanbel 2. ST... Script Address: 0x14E215
+0034 - Südostturm Tanbel 3. ST... Script Address: 0x14E26E
+0035 - Südostturm Tanbel 4. ST... Script Address: 0x14E286
+0036 - Südostturm Tanbel 5. ST... Script Address: 0x14E34E
+0037 - Clamento... Script Address: 0x14E731
+0038 - Clamento... Script Address: 0x14ED9C
+0039 - Rubinhöhle U1... Script Address: 0x14FCE6
+0040 - Rubinhöhle U2... Script Address: 0x14FD53
+0041 - Rubinhöhle U3... Script Address: 0x14FD99
+0042 - Rubinhöhle U4... Script Address: 0x14FDE5
+0043 - Tempel nach Pandoria... Script Address: 0x158573
+0044 - Pandoria... Script Address: 0x158640
+0045 - Pandoria... Script Address: 0x15A851
+0046 - Schloß Pandoria... Script Address: 0x15B475
+0047 - Schloß Pandoria... Script Address: 0x15C481
+0048 - Schwerttempel EG... Script Address: 0x15EB6C
+0049 - Schwerttempel 1. ST... Script Address: 0x15EB8B
+0050 - Schwerttempel 2. ST... Script Address: 0x15EBD6
+0051 - Schwerttempel 3. ST... Script Address: 0x15ECD8
+0052 - Schwerttempel U1... Script Address: 0x15F45D
+0053 - Tempel nach Gordovan... Script Address: 0x15F475
+0054 - Gordovan... Script Address: 0x15F5B2
+0055 - ... Script Address: 0x15FA1D
+0056 - Westturm Gordovan EG... Script Address: 0x15FA9E
+0057 - Westturm Gordovan 1. ST... Script Address: 0x15FBA7
+0058 - Westturm Gordovan 2. ST... Script Address: 0x15FCC2
+0059 - Westturm Gordovan 3. ST... Script Address: 0x15FD8B
+0060 - Westturm Gordovan 4. ST... Script Address: 0x15FF44
+0061 - Westturm Gordovan 5. ST... Script Address: 0x168014
+0062 - Minias... Script Address: 0x16872E
+0063 - Minias... Script Address: 0x1689EE
+0064 - Brückenhöhle U1... Script Address: 0x168DD8
+0065 - Brückenhöhle U2... Script Address: 0x168F97
+0066 - Brückenhöhle U3... Script Address: 0x168FF5
+0067 - Brückenhöhle U4... Script Address: 0x16915B
+0068 - Brückenhöhle U5... Script Address: 0x16939D
+0069 - Königreich Rusalka... Script Address: 0x16951C
+0070 - Königreich Rusalka... Script Address: 0x16AAB5
+0071 - Nordgrotte U1... Script Address: 0x16C3EC
+0072 - Nordgrotte U2... Script Address: 0x16C455
+0073 - Nordgrotte U3... Script Address: 0x16C46D
+0074 - Nordgrotte U4... Script Address: 0x16C4F2
+0075 - ... Script Address: 0x16CDB2
+0076 - Ahnenturm EG... Script Address: 0x16CDD8
+0077 - Ahnenturm 1. ST... Script Address: 0x16CF34
+0078 - Ahnenturm 2. ST... Script Address: 0x16CFC8
+0079 - Ahnenturm 3. ST... Script Address: 0x16CFE0
+0080 - Ahnenturm 4. ST... Script Address: 0x16D06E
+0081 - Ahnenturm 5. ST... Script Address: 0x16D0C1
+0082 - Ahnenturm 6. ST... Script Address: 0x16D1D7
+0083 - Ahnenturm 5. ST... Script Address: 0x16D8DD
+0084 - Ahnenturm 4. ST... Script Address: 0x16D94D
+0085 - Ahnenturm 3. ST... Script Address: 0x16D965
+0086 - Tempel nach Alea... Script Address: 0x16DAF3
+0087 - ... Script Address: 0x16DE00
+0088 - Nordleuchtturm EG... Script Address: 0x16DE18
+0089 - Nordleuchtturm 1. ST... Script Address: 0x16DFD5
+0090 - Nordleuchtturm 2. ST... Script Address: 0x16DFED
+0091 - Nordleuchtturm 3. ST... Script Address: 0x16E04F
+0092 - Nordleuchtturm 4. ST... Script Address: 0x16E0A4
+0093 - Nordleuchtturm 5. ST... Script Address: 0x16E0C3
+0094 - Hafenstadt Alea... Script Address: 0x16E8EF
+0095 - Hafenstadt Alea... Script Address: 0x16F6E5
+0096 - Berg des Aurabaums... Script Address: 0x16FDF6
+0097 - Berg des Aurabaums... Script Address: 0x16FF5A
+0098 - Berg des Aurabaums... Script Address: 0x16FF72
+0099 - Berg des Aurabaums... Script Address: 0x16FFEA
+0100 - Berg des Aurabaums... Script Address: 0x178002
+0101 - Berg des Aurabaums... Script Address: 0x17801A
+0102 - Berg des Aurabaums... Script Address: 0x178032
+0103 - Berg des Aurabaums... Script Address: 0x17806D
+0104 - Gruberia... Script Address: 0x178315
+0105 - Gruberia... Script Address: 0x178708
+0106 - Narcysus... Script Address: 0x179406
+0107 - Narcysus... Script Address: 0x179CC4
+0108 - ... Script Address: 0x179F88
+0109 - Opferturm EG... Script Address: 0x179FA0
+0110 - Opferturm 1. ST... Script Address: 0x179FB8
+0111 - Opferturm 2. ST... Script Address: 0x179FD0
+0112 - Opferturm 3. ST... Script Address: 0x179FEF
+0113 - Opferturm 4. ST... Script Address: 0x17A07A
+0114 - Opferturm 5. ST... Script Address: 0x17A092
+0115 - Kumarbi... Script Address: 0x17ADDE
+0116 - Kumarbi... Script Address: 0x17B231
+0117 - Nordtempel Kumarbi EG... Script Address: 0x17B393
+0118 - Nordtempel Kumarbi 1. ST... Script Address: 0x17B46C
+0119 - Nordtempel Kumarbi 2. ST... Script Address: 0x17B48D
+0120 - Nordtempel Kumarbi U1... Script Address: 0x17B9B7
+0121 - Tempel nach Kythos... Script Address: 0x17BEA2
+0122 - Kythos... Script Address: 0x17BFA2
+0123 - Kythos... Script Address: 0x17CF7A
+0124 - ... Script Address: 0x17DC95
+0125 - Lexis Shaia Labor... Script Address: 0x17DD1D
+0126 - Berg der Blumen... Script Address: 0x17EAF4
+0127 - Berg der Blumen... Script Address: 0x17EC9E
+0128 - Berg der Blumen... Script Address: 0x17ED2D
+0129 - Berg der Blumen... Script Address: 0x17ED45
+0130 - Berg der Blumen... Script Address: 0x17ED64
+0131 - Berg der Blumen... Script Address: 0x17ED7C
+0132 - Berg der Blumen... Script Address: 0x17ED94
+0133 - Schicksalsinsel... Script Address: 0x17EDAC
+0134 - Schicksalsinsel... Script Address: 0x17EF80
+0135 - Markao... Script Address: 0x17F210
+0136 - Königreich Danubia... Script Address: 0x17FCD7
+0137 - Königreich Danubia... Script Address: 0x188353
+0138 - Königreich Auralio... Script Address: 0x189A51
+0139 - Königreich Auralio... Script Address: 0x189D90
+0140 - Nordhöhle Danubia U1... Script Address: 0x18A21F
+0141 - Nordhöhle Danubia U2... Script Address: 0x18A29A
+0142 - Nordhöhle Danubia U3... Script Address: 0x18A331
+0143 - Nordhöhle Danubia U4... Script Address: 0x18A369
+0144 - Nordhöhle Danubia U5... Script Address: 0x18A3A1
+0145 - Königreich Arturia... Script Address: 0x18ABC4
+0146 - Königreich Arturia... Script Address: 0x18ADBB
+0147 - ... Script Address: 0x18BFDC
+0148 - Nordostturm EG... Script Address: 0x18BFF4
+0149 - Nordostturm 1. ST... Script Address: 0x18C02C
+0150 - Nordostturm 2. ST... Script Address: 0x18C044
+0151 - Nordostturm 3. ST... Script Address: 0x18C091
+0152 - Nordostturm 4. ST... Script Address: 0x18C0A9
+0153 - Tempel nach Agurio... Script Address: 0x18C5E0
+0154 - Agurio... Script Address: 0x18C69D
+0155 - Triesta... Script Address: 0x18CDF9
+0156 - Triesta... Script Address: 0x18D313
+0157 - Picolonia... Script Address: 0x18D6A6
+0158 - Picolonia... Script Address: 0x18D779
+0159 - Drachentempel... Script Address: 0x18D976
+0160 - Portravia... Script Address: 0x18DD03
+0161 - Portravia... Script Address: 0x18EBFE
+0162 - Mirkos Labor... Script Address: 0x18EEA8
+0163 - Berg ohne Wiederkehr... Script Address: 0x198EDD
+0164 - Berg ohne Wiederkehr... Script Address: 0x199620
+0165 - Berg ohne Wiederkehr... Script Address: 0x199638
+0166 - Elfenhain... Script Address: 0x199694
+0167 - Elfenhain... Script Address: 0x19A123
+0168 - Weihetempel EG... Script Address: 0x19A2BF
+0169 - Weihetempel 1. ST... Script Address: 0x19A2F8
+0170 - Weihetempel 2. ST... Script Address: 0x19A310
+0171 - Weihetempel U1... Script Address: 0x19AB57
+0172 - Baleara... Script Address: 0x19AB6F
+0173 - Baleara... Script Address: 0x19B5CF
+0174 - Unterwasserhöhle Baleara... Script Address: 0x19BA50
+0175 - Rachetempel EG... Script Address: 0x19BA68
+0176 - Rachetempel 1. ST... Script Address: 0x19BA80
+0177 - Rachetempel 2. ST... Script Address: 0x19BA9F
+0178 - Rachetempel 3. ST... Script Address: 0x19BAED
+0179 - Rachetempel U1... Script Address: 0x19BD91
+0180 - Rachetempel U2... Script Address: 0x19BDA9
+0181 - Durinea... Script Address: 0x19BE58
+0182 - Durinea... Script Address: 0x19C388
+0183 - ... Script Address: 0x19C915
+0184 - Turm der Wahrheit EG... Script Address: 0x19C92D
+0185 - Turm der Wahrheit 1. ST... Script Address: 0x19C945
+0186 - Turm der Wahrheit 2. ST... Script Address: 0x19C95D
+0187 - Turm der Wahrheit 3. ST... Script Address: 0x19C975
+0188 - Turm der Wahrheit 4. ST... Script Address: 0x19C9B7
+0189 - Turm der Wahrheit 5. ST... Script Address: 0x19C9D6
+0190 - Chadda... Script Address: 0x19D351
+0191 - Chadda... Script Address: 0x19D8F3
+0192 - Drachenberg... Script Address: 0x19DF7A
+0193 - Drachenberg... Script Address: 0x19DF92
+0194 - Drachenberg... Script Address: 0x19DFAA
+0195 - Drachenberg... Script Address: 0x19E1A0
+0196 - Drachenberg... Script Address: 0x19E200
+0197 - Drachenberg... Script Address: 0x19E255
+0198 - Drachenberg... Script Address: 0x19E26D
+0199 - Drachenberg... Script Address: 0x19E2C2
+0200 - Unterwasserhöhle Chadda... Script Address: 0x19E62F
+0201 - Aquataria... Script Address: 0x19E67F
+0202 - Aquataria... Script Address: 0x19E844
+0203 - Unterwasserhöhle z. Tempel... Script Address: 0x19F1B6
+0204 - Unterwasserhöhle z. Tempel... Script Address: 0x19F200
+0205 - Unterwassertempel... Script Address: 0x19F6F6
+0206 - Unterwassertempel... Script Address: 0x19FC72
+0207 - ... Script Address: 0x19FC8A
+0208 - Chadda... Script Address: 0x1A8053
+0209 - Unterwasserhöhle Taru... Script Address: 0x1A8207
+0210 - Schloß Taru U1... Script Address: 0x1A821F
+0211 - Schloß Taru U2... Script Address: 0x1A823E
+0212 - Schloß Taru U3... Script Address: 0x1A8256
+0213 - Schloß Taru U4... Script Address: 0x1A826E
+0214 - Königreich Taru... Script Address: 0x1A8CC8
+0215 - Königreich Taru... Script Address: 0x1A94EF
+0216 - Kirvan... Script Address: 0x1A9507
+0217 - Kirvan... Script Address: 0x1A969E
+0218 - ... Script Address: 0x1AA081
+0219 - ... Script Address: 0x1AA099
+0220 - ... Script Address: 0x1AA0B1
+0221 - Erster Siegelturm... Script Address: 0x1AA602
+0222 - ... Script Address: 0x1AA61A
+0223 - ... Script Address: 0x1AA632
+0224 - ... Script Address: 0x1AA64A
+0225 - Zweiter Siegelturm... Script Address: 0x1AA8B9
+0226 - ... Script Address: 0x1AA8D1
+0227 - ... Script Address: 0x1AA8E9
+0228 - ... Script Address: 0x1AA901
+0229 - Dritter Siegelturm... Script Address: 0x1AB163
+0230 - ... Script Address: 0x1AB17B
+0231 - Daostempel EG... Script Address: 0x1AB202
+0232 - Daostempel 1. ST... Script Address: 0x1AB553
+0233 - Daostempel 2. ST... Script Address: 0x1AB56B
+0234 - Daostempel 3. ST... Script Address: 0x1AB6BA
+0235 - Daostempel 4. ST... Script Address: 0x1ABB0E
+0236 - ... Script Address: 0x1ACE18
+0237 - Inseltempel... Script Address: 0x1AD234
+0238 - ... Script Address: 0x1AD290
+0239 - Höhle... Script Address: 0x1AD2A8
+0240 - Ahnenhöhle... Script Address: 0x1AD301
+0241 - Ende der Ahnenhöhle... Script Address: 0x1AD7A0

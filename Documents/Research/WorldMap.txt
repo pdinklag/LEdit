@@ -1,0 +1,22 @@
+D0000 = 4x4 map block data
+
+files used for world map:
+DCE51B = #0x28C = world map tiles <-> 8bpp!!!!! XY each 4bit , X = palette, Y = color
+DD8A22 = #0x28D = world block map
+D4E1F7 = #0x194 = Monsterverteilung auf der Map (???)
+B787FE = #0x000 = world map music
+
+RAM 7F4040 - 7FC040  = uncompressed World Map Block Data!!
+
+
+// ???
+8698F5 = 318F5		=> decide whether tile is accessible or notx
+
+8698FA = 318FA		=> OK to access routine
+
+Tile Accessability Types:
+0x00	= Grass, plain
+0x10	= Desert
+0x20	= Forest
+0x30	= Water
+0x40	= Mountain

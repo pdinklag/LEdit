@@ -1,0 +1,2 @@
+Stringtable:	F47E8
+1st String:		F4CE4

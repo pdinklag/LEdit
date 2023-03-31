@@ -1,0 +1,37 @@
+Warp table:	75038
+Warp data:	75072
+
+
+WARP
+----
+0x0	byte		Event that has to be passed?
+0x1	byte		Location
+0x2	byte		???
+0x3	name (null-terminated)
+
+
+Warp Locations:
+---------------
+
+0x0		[current location, warp to where you are]
+0x1		Lunaria (Stadt)
+0x2		Tarika
+0x3		Lunaria (Schloss)
+0x4		Höhle der Geheimnisse
+0x5		Höhle nach Tarika
+0x6
+0x7
+0x8
+0x9
+0xA		Taia
+0xB		Seehöhle Tarika
+0xC		Tanbel
+
+0x12		Clamento
+
+0x4A		Kirvan
+0x4B		Turm Ischt
+0x4C		Turm Inschel
+0x4D		Turm Dasch
+
+above		same as 0x0

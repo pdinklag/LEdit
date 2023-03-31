@@ -1,0 +1,38 @@
+In-Dungeon / City Tile Map Data
+-------------------------------
+
+pointer table: 2FF000
+first map sprite: 2FF1F6
+0xFB (251) pointers
+
+data:
+0x0		byte	Flags
+0x1		byte	Palette
+0x2		Offset	Tile data Offset (see flags for how many)
+
+Flags
+-----
+
+0x01 = vertical large frames
+0x02 = horizontal large frames
+0x04 = ?
+0x08 = simple animation (= 2 frames)
+0x10 = animated for each direction (= 3 frames) => 12 tiles
+0x20 = ?
+0x40 = ?
+0x80 = ?
+
+
+=============================================
+Character In-Dungeon / City Tile Map Data
+
+at: 8690AB = 310AB
+
+
+=============================================
+Character Battle/UI Tile Map Data
+
+at: 0x765d8
+
+pointers:
+Maxim, Selan, Guy, Artea, Tia, Dekar, Lexis

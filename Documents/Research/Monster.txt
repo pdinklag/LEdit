@@ -1,0 +1,59 @@
+DATA:
+----------------------------------------------
+0x00	char[14]	Name
+0x0D	char		Level
+0x0E	char		Unknown
+0x0F	char		TilemapFile
+0x10	char		Palette
+0x11	short		HP
+0x13	short		MP
+0x15	short		ANG
+0x17	short		ABW
+0x19	char		BWG
+0x1A	char		INT
+0x1B	char		MUT
+0x1C	char		MGA
+0x1D	short		Experience
+0x1F	short		Gold
+0x21	EXTRA DATA
+
+EXTRA DATA:
+----------------------------------------------
+
+Code	Meaning			Value
+----------------------------------------------
+0x00	End of EXTRA DATA	(none)
+
+0x03	Award Item		unsigned char ItemIndex
+				unsigned char Unknown	
+						bit 0x1 	ItemBankOffset
+						other bits	Chance out of 127?
+
+
+
+
+SCRIPT-FEHLER:
+Blitzfisch:		Einige Jump-Offsets im Attacke-Skript sind falsch, ein Teil des Codes kann niemals erreicht werden!
+Rostdrachen:	Ein Abwehr-Skript ist zwar vorhanden, aber der 0x08-Eintrag fehlt!
+Ninja:			Ein Abwehr-Skript ist zwar vorhanden, aber der 0x08-Eintrag fehlt!
+Stahltross:		Der erste Befehl des Abwehr-Skriptes wird wegen eines falschen 0x08-Eintrages übersprungen!
+Erim:			Ein Haufen Befehle des Abwehr-Skriptes werden wegen eines falschen 0x08-Eintrages übersprungen!
+
+References to the monster table:
+0xB20E
+
+0xFC00
+0xFC05
+0xFC17
+0xFC1E
+0xFC25
+0xFC2C
+0xFC33
+
+0xFC4A - Bank 0xB4 set!
+0xFC62 - Bank 0xB4 presumed
+0xFC66 - Bank 0xB4 presumed
+
+0xFD1E - Bank 0xB4 set!
+0xFD24 - Bank 0xB4 presumed
+0xFD28 - Bank 0xB4 presumed

@@ -1,0 +1,17 @@
+Dialogues
+---------
+
+00	= End
+
+03	= New Line
+
+05	= + byte Index. String from StringTable 1
+
+08	= Dialog box start
+
+E0	= Battle message start
+
+<	= ä
+(	= ö
+;	= ü
+|	= ß

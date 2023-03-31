@@ -1,0 +1,35 @@
+Monster table:	1A05C0
+Monster data:	1A0780
+
+MONSTER
+-------
+
+0x0	char[13]	Name
+0xD	byte		Level?
+0xE	byte		???
+0xF	byte		Battle Image			=> compressed file #439 + [this]
+0x10	byte		Battle Palette
+0x11	word		HP
+0x13	word		MP
+0x15	word		Angriff
+0x17	word		Abwehr
+0x19	???
+0x1A	???
+0x1B	???
+0x1C	???
+0x1D	word		EXP
+0x1F	word		Money
+
+0x21	extra data
+
+EXTRA DATA
+----------
+
+0x3	-	Item, => BYTE item, BYTE flags
+
+0x7	-	Ex7DataOffset, => WORD offset
+0x8	-	Ex8DataOffset, => WORD offset
+
+
+---
+0x1E - Special Attack

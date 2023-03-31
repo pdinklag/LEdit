@@ -1,0 +1,20 @@
+$8F:8000	0x78000		Table		Puzzle data table (3 byte relative offset per map)
+
+Puzzles:
+
+0x00	2-byte offset	??? data
+0x02	2-byte offset	??? data
+0x04	2-byte offset	??? data
+0x06	2-byte offset	??? data
+0x08	2-byte offset	??? data
+0x0A	2-byte offset	??? data
+0x0C	2-byte offset	??? data
+0x0E	2-byte offset	??? data
+0x10	2-byte offset	??? data
+0x12	2-byte offset	??? data
+0x14	2-byte offset	??? data
+0x16	2-byte offset	??? data
+0x18	2-byte offset	??? data
+0x1A	2-byte offset	??? data
+0x1C	2-byte offset	??? data
+0x1E	2-byte offset	??? data

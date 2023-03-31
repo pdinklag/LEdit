@@ -1,0 +1,26 @@
+Taia
+----
+
+loaded files:
+0x043 - B8F00D => Taia Block map
+0x133 - C6A41A => Town blocks
+0x002 - B79161 => Town music
+0x14E - C9AE7D => Town tileset
+0x161 - D2978B => Animated tiles???
+
+Presets:
+93BFBD = 9BFBD
+
+loaded data:
+MAP HEADER #3
+
+
+Tarika
+------
+
+loaded files:
+0x048 - B9A7E0 => Tarika Block map
+0x136 - C6D5D9 => Village blocks
+0x003 - B79856 => Village music
+0x151 - CB92FC => Village tileset
+0x163 - D2AE19 => Animated tiles???

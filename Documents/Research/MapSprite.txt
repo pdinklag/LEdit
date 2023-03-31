@@ -1,0 +1,17 @@
+DATA:
+----------------------------------------------
+0x0	unsigned char 	Flags
+0x1	char		Palette
+0x2	Address		Tile data address (see flags for how many)
+
+Flags
+-----
+
+0x01 = vertical large frames
+0x02 = horizontal large frames
+0x04 = ?
+0x08 = simple animation (= 2 frames)
+0x10 = animated for each direction (= 3 frames) => 12 tiles
+0x20 = ?
+0x40 = ?
+0x80 = ?

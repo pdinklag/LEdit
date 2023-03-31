@@ -1,0 +1,65 @@
+CalculatedSize = (totalFileSize / 0x2000) * 0x2000;
+
+uint16 CMemory::checksum_calc_sum (uint8 *data, uint32 length)
+{
+	uint16	sum = 0;
+
+	for (uint32 i = 0; i < length; i++)
+		sum += data[i];
+
+	return (sum);
+}
+
+uint16 CMemory::checksum_mirror_sum (uint8 *start, uint32 &length, uint32 mask)
+{
+	// from NSRT
+	while (!(length & mask))
+		mask >>= 1;
+
+	uint16	part1 = checksum_calc_sum(start, mask);
+	uint16	part2 = 0;
+
+	uint32	next_length = length - mask;
+	if (next_length)
+	{
+		part2 = checksum_mirror_sum(start + mask, next_length, mask >> 1);
+
+		while (next_length < mask)
+		{
+			next_length += next_length;
+			part2 += part2;
+		}
+
+		length = mask + mask;
+	}
+
+	return (part1 + part2);
+}
+
+void CMemory::Checksum_Calculate (void)
+{
+	// from NSRT
+	uint16	sum = 0;
+
+	if (Settings.BS && !Settings.BSXItself)
+		sum = checksum_calc_sum(ROM, CalculatedSize) - checksum_calc_sum(ROM + (HiROM ? 0xffb0 : 0x7fb0), 48);
+	else
+	if (Settings.SPC7110)
+	{
+		sum = checksum_calc_sum(ROM, CalculatedSize);
+		if (CalculatedSize == 0x300000)
+			sum += sum;
+	}
+	else
+	{
+		if (CalculatedSize & 0x7fff)
+			sum = checksum_calc_sum(ROM, CalculatedSize);
+		else
+		{
+			uint32	length = CalculatedSize;
+			sum = checksum_mirror_sum(ROM, length);
+		}
+	}
+
+	CalculatedChecksum = sum;
+}

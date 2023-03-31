@@ -1,0 +1,36 @@
+Offset		Type		Desc
+==================================
+0x00		char[8]		Name
+0x08		byte		SpellFlags
+0x09		byte		???
+0x0A		byte		CharacterFlags
+0x0B		byte		???
+0x0C		word		MP
+0x0E		byte		???
+0x0F		word		Cost
+0x11		word		ScriptOffset
+
+SpellFlags
+====================
+0x01	
+0x02	
+0x04	
+0x08	
+0x10	
+0x20	
+0x40	Usable in Menu
+0x80	Usable in Battle
+
+CharacterFlags
+====================
+0x01	Maxim
+0x02	Selan
+0x04	Guy
+0x08	Artea
+0x10	Tia
+0x20	Dekar
+0x40	Lexis
+
+Script
+====================
+(BattleScript)

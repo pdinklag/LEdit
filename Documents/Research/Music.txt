@@ -1,0 +1,27 @@
+MUSIC!!!
+
+Script!
+
+
+0x10 - START
+
+
+XX = Tonhöhe
+YY = ???
+ZZ = ???
+
+
+==== Folge von:
+XX YY ZZ AA
+
+XX = Tonhöhe (0x44 = Grundton (immer Gis?), 0x01 = ein Halbton)
+YY = Zeit bis zum nächsten Ton (0x12 = Achtel?)
+ZZ = Zeit, die der Ton gehalten wird
+AA = Aktion?
+	0x00 = Pause?
+	0x48 = Spielen
+	
+BESONDERHEIT:
+	Wenn Flag 0x80 auf XX gesetzt wird der letzte ton mit einer Transponierung wiederholt (Grundton: 0x44, exakte Wiederholung: 0xC4)
+	
+0xFD nach 0x48: vorigen Ton halten

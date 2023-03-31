@@ -1,0 +1,53 @@
+FF 09 -> tile 0x1FF, pal 0x0	09 = 0000 1001
+D0 08 -> tile 0x0D0, pal 0x0	08 = 0000 1000
+12 0C -> tile 0x012, pal 0x1	0C = 0000 1100
+3D 14 -> tile 0x03D, pal 0x3	14 = 0001 0100
+E7 0D -> tile 0x1E7, pal 0x1	0D = 0000 1101
+56 31 -> tile 0x156, pal 0x2	31 = 0011 0001
+2E 2D -> tile 0x12E, pal 0x1	2D = 0010 1101
+20 11 -> tile 0x120, pal 0x2	11 = 0001 0001
+A5 15 -> tile 0x1A5, pal 0x3	15 = 0001 0101
+
+37 8C -> tile 0x037, pal 0x1	8C = 1000 1100
+BC 1C -> tile 0x0BC, pal 0x5	1C = 0001 1100
+1C 0C -> tile 0x01C, pal 0x1	0C = 0000 1100
+
+F4 1D -> tile 0x1F4, pal 0x5	1D = 0001 1101
+C4 1C -> tile 0x0C4, pal 0x5	1C = 0001 1100
+0A 18 -> tile 0x00A, pal 0x4	18 = 0001 1000
+
+10 14 -> tile 0x218, pal 0x5	14 = 0001 0100
+
+29 15 -> tile 0x129, pal 0x3	15 = 0001 0101
+
+10 04 -> tile 0x010, pal 0x1	04 = 0000 0100
+
+CD 0C -> tile 0x0CD, pal 0x1	0C = 0000 1100
+
+
+7C 0D				0D = 0000 1101
+
+17C 
+
+bit
+---
+1	add 0x100 to the tile index
+2	??? (add 0x200 to the index?)
+4	bit 1 of palette
+8	???
+
+10	bit 2 of palette
+20	draw OVER sprites
+40	flip X
+80	flip Y
+
+0x10	0x08	0x04	pal
+------------------------------
+0	0	0	0x0
+0	0	1	0x5
+1	0	0	0x2
+1	0	1	0x3
+1	1	0	0x4
+1	1	1	0x5
+0	1	0	0x0
+0	1	1	0x1

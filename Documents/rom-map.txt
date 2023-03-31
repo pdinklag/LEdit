@@ -1,0 +1,127 @@
+Lufia 2 ROM Map
+===============
+
+LoROM Address	PC Address	Type		Description
+------------------------------------------------------------------------------------
+
+$80:8EAF	0xEAF		Code		File decompression routine
+$80:8EB5	0xEB5		Code		> here A holds the file index!
+
+$80:92DE	0x12DE		Palette		Nintendo logo palette
+
+$80:931F	0x131F		Palette		Taito logo palette
+
+$81:839F	0x83B2		Code		Load Monster Horde data?
+						> A = horde index
+
+$81:FBF7	0xFBF7		Code		Monster::GetTilemapFileIndex
+
+$81:FC31	0xFC3C		Code		Monster::ReadData	(until	$81:FD12, 0xFD12)
+$81:FC4A	0xFC4A		Code		Read Monster data into RAM (for battle)
+$81:FCE4	0xFCE4		Code		Parse Monster Extra data!
+
+$84:8F11	0x20F11		Table		IPAttackTable (0xA8)
+$84:9061	0x21061		Data		IPAttackData
+
+$85:F308	0x2F308		Table		EnemyAttackMsgTable (0x8A) -> Bank 0x85
+$85:F41C	0x2F41C		Data		EnemyAttackMsgData
+
+$8E:D038	0x75038		Table		WarpDestTable (0x1C)
+$8E:D072	0x75072		Data		WarpDestData
+
+$8E:EA00	0x76A00		Table		StringTable 1 (0x280)
+$8E:EF00	0x76F00		Data		Strings 1
+
+$8F:8000	0x78000		Table		Puzzle data table (3 byte relative offset per map)
+
+$91:B808	0x8B808		Table		Chest data table (first two bytes unknown, then one pointer per map)
+
+$91:BA0E	0x8BA0E		Data		Chest content data for map 0x06 (Höhle nach Tarika U1)
+
+$93:BFBD	0x9BFBD		???			Taia Data
+//---
+$93:BFCD	0x9BFCD		Presets		Taia
+
+$93:C04B	0x9C04B		2 bytes		Taia Church Entry Source 1 XY
+$93:C04D	0x9C04D		2 bytes		Taia Church Entry Source 1 XY
+$93:C050	0x9C050		2 bytes		Taia Church Entry Destination XY
+$93:C052	0x9C052		2 bytes		Taia Church Entry Destination map ID
+
+$9A:8000	0xD0000		Data		WorldMap Blocks
+
+$9B:BCE8	0xDBCE8		Palette		Town Palettes (6)
+
+$9B:BE88	0xDBE88		Palette		Dungeon Palettes (6)
+
+$9E:C7E8	0xF47E8		Table		StringTable 2 (0x27E)
+$9E:CCE4	0xF4CE4		Data		Strings 2
+
+$9E:DED5	0xF5ED5		Data		ItemNames (0xC chars each)
+
+$9E:FEB9	0xF7EB9		Palette		MapSprite palettes
+
+$9F:A900	0xFA900		Tiles		ItemSprites
+						4 8x8 tiles
+						top left, top right, bottom left, bottom right
+
+$A7:8000	0x138000	Table		MapHeaders:
+									DialogOffset (3 bytes)
+									ScriptOffset (3 bytes)
+									NameOffset (2 bytes)
+
+$B3:FA5B	0x19FA5B	Table		SpellTable (0x28)
+$B3:FAAB	0x19FAAB	Data		SpellData
+
+$B5:D140	
+
+$B4:85C0	0x1A05C0	Table		MonsterTable (0xFE)
+$B4:8780	0x1A0780	Data		MonsterData
+$B4:CF69	0x1A4F69	Table		ItemTable (0x1D3)
+$B4:D30F	0x1A530F	Data		ItemData
+
+$B5:C088	0x1AC088	Table		MonsterHordes			(1 pointer per map, to MonsterHordeIndexTable)
+$B5:C27A	0x1AC278	Table		MonsterHordeIndexTable	(1-byte-index to Data per Preset - 0x50)
+$B5:C56F	0x1AC56F	Data		MonsterHordeData		(0x8 bytes each)
+
+$B5:D140	0x1AD140	Data		MonsterTilemapDimensions
+
+$B7:8000	0x1B8000	Table		FileTable (0x2AA)
+$B7:87FE	0x1B87FE	Data		Files
+
+$DF:F000	0x2FF000	Table		MapSpriteTable (0xFB)
+$DF:F1F6	0x2FF1F6	Data		MapSpriteData
+
+---		---				List		MapFileList		(+0x40 => filenumber, one byte per map)
+
+$DF:F72E	0x2FF72E	List		BlockSetFileList	(+0x131 => filenumber, one byte per map)
+
+$DF:F81E	0x2FF81E	List		TileSetFileList		(+0x14C => filenumber, one byte per map)
+
+$DF:FAFA	0x2FFAFA	Table		PaletteSets		(Bank 0x9B)
+
+$DF:FCBC	0x2FFCBC	Table		MapPresets
+2FFCCB
+
+=============================
+
+$96:85C0	0xB05C0		English Monster Data
+to
+$96:CF69	0xB4F69
+
+$96:CF69	0xB4F69		English Item Data
+to
+$96:FADF	0xB7ADF
+
+=> 29KB of "free space"!!!
+
+=============================
+LPATCH:
+
+$E0:8000	0x300000	Code hacks for uncompressed files
+$E0:8080	0x300080	New File Table
+
+$E1:8000	0x308000	New Map Info (0x600 bytes per map, for the theoretical maximum of 0x100 maps)
+> $ED:8000	0x368000
+
+$01:8000	0x408000	New Monster Data (whole bank)
+$02:8000	0x410000	New Item Data (whole bank)

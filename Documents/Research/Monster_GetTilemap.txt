@@ -1,0 +1,12 @@
+$81/FBF7 08          PHP
+$81/FBF8 DA          PHX
+$81/FBF9 C2 30       REP #$30
+$81/FBFB 29 FF 00    AND #$00FF			;Monster Index in A
+$81/FBFE 0A          ASL A
+$81/FBFF AA          TAX
+$81/FC00 BF C0 85 B4 LDA $B485C0,x[$B4:CE80]	;Get Offset to Monster data
+$81/FC04 AA          TAX
+$81/FC05 BF CF 85 B4 LDA $B485CF,x[$B4:CE8F]	;Get Monster's Tilemap file index
+$81/FC09 FA          PLX
+$81/FC0A 28          PLP
+$81/FC0B 6B          RTL

@@ -1,0 +1,11 @@
+File Index Range		Type
+----------------------------------------------------------
+0x000 - ???			Music
+
+0x040 - ???			Maps
+
+0x131 - ???			Map Block Sets
+
+0x14C - ???			Map Tile Sets
+
+0x1B8 - ???			Monster Tilesets

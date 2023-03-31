@@ -1,0 +1,114 @@
+Lufia 2 RAM Map
+===============
+
+Address		Type				Description			Notes
+----------------------------------------------------------------------------------------
+
+//STATIC
+$7E:0A8A		short			Gold
+
+$7E:0A8D		short[96]		Inventory			byte ItemID
+													byte Flags (Amount / Item ID)
+														Flags & 0x01  => ItemID |= 0x100
+														Amount = Flags >> 1
+
+$7E:0BAD		char[6]			Maxim Name			Last character should be 0
+
+$7E:0BBB		byte			Maxim Level
+$7E:0BBC		byte			Maxim Status		Flags:
+													0x01 = Poisoned
+													0x02 = "..." (effect name?)
+													0x04 = Dead
+													0x08 = Paralyzed
+													0x10 = Confused
+													0x20 = Sleeping
+													0x40 = Nothing
+
+
+$7E:0BBE		short			Maxim HP
+$7E:0BC0		short			Maxim MP
+
+$7E:0BD2		short			Maxim Max HP
+$7E:0BD6		short			Maxim Max MP
+$7E:0BD8		short			Maxim ANG
+$7E:0BDA		short			Maxim ABW
+$7E:0BDC		short			Maxim STR
+$7E:0BDE		short			Maxim BWG
+$7E:0BF0		short			Maxim INT
+$7E:0BF2		short			Maxim MUT
+$7E:0BF4		short			Maxim MGA
+
+$7E:0C0C		triple			Maxim EXP			triple: values till 0xFFFFFF = 16,777,215
+$7E:0C0F		triple			Maxim Needed EXP	Total EXP required to level up
+
+$7E:0C14		short			Maxim Weapon		Equiped Item #1, only bit 0x01 of high byte works
+$7E:0C16		short			Maxim Armor			Equiped Item #2
+$7E:0C18		short			Maxim Shield		Equiped Item #3
+$7E:0C1A		short			Maxim Helmet		Equiped Item #4
+$7E:0C1C		short			Maxim Ring			Equiped Item #5
+$7E:0C1E		short			Maxim Jewel			Equiped Item #6
+
+$7E:0C43		byte[36]		Maxim Spells		0xFF means no spell
+
+$7E:0C69		byte			Maxim ZP			X out of 256
+
+//BEFORE MAP LOAD
+$7E:F000		???				Preset data
+$7E:F010		Table			Presets
+$7E:F000+Offs	byte			PresetID
+$7E:F001+Offs	short			Preset XY
+$7E:F003+Offs	short			???
+$7E:F005+Offs	short			???
+$7E:F007+Offs	byte			??? (Action?, some people have 0xF, monsters have 0x0)
+
+//MAP LOAD
+$7E:009F		byte			Spawn X
+$7E:00A1		byte			Spawn Y
+
+$7E:05B0		byte			Spawn X
+$7E:05B1		byte			Spawn Y
+
+$7E:120A		byte			Spawn X
+$7E:120B		byte			Spawn Y
+
+$7E:F093		byte			Spawn X
+$7E:F094		byte			Spawn Y
+
+//MAP
+$7E:05AC	byte				MapIndex
+
+$7E:06BA	byte				X
+$7E:06E2	byte				Y
+
+$7F:D17C	byte				X
+$7F:D184	byte				Y
+
+$7F:F760	structs	MonsterIndices		Structures à 0x0A bytes holding the monsters per preset - 0x50
+										First 6 bytes are monster indices, rest 4 are unknown
+
+//WORLD MAP
+$7E:11F2	byte				X
+$7E:11F4	byte				Y
+
+//BEFORE BATTLE
+$7E:09F2	short				MonsterIndex			Monster you're gonna face
+
+$7E:1345	short				MonsterIndex			Monster you're gonna face
+
+//IN BATTLE
+$7E:161B	char[14]			Monster.Name
+
+$7E:1640	short				Monster.Level
+$7E:1642	short				Monster.Unknown
+
+$7E:1660	Address				Monster.DataAddress
+
+$7E:166B	short				Monster.Index
+
+$7E:1693	short				Monster.HP
+$7E:1695	short				Monster.MP
+
+$7E:1699	short				Monster.BWG			converted from char to short
+$7E:169B	short				Monster.INT			converted from char to short
+$7E:169D	short				Monster.MUT			converted from char to short
+$7E:169F	short				Monster.MGA			converted from char to short

@@ -1,0 +1,30 @@
+MAP HEADERS:
+(Music, characters)
+
+Map table:	138000
+Map dialogs:	138000 + [dialog offset]
+Map names:	138000 + [names offset]
+Map cmds:	138000 + [map commands offset]
+
+Presets pointer table: DFFCBC = 2FFCBC
+
+MAP TABLE
+---------
+
+0x0	offs3	dialogs offset
+0x3 	offs3	map commands offset
+0x6	word	name offset
+
+
+
+
+Taia:
+-----
+
+Typ mit blauem Haar: 21, 26. Preset: 0x50
+Opa: 0x10, 0x22
+
+Mädchen: 0x1E, 0x1E , Preset: 0x57
+
+
+PRESETS

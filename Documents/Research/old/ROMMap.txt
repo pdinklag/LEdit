@@ -1,0 +1,112 @@
+8698F5 = 318F5		=> decide whether tile is accessible or notx
+
+8698FA = 318FA		=> OK to access routine
+
+Tile Accessability Types:
+00	= Grass, plain
+10	= Desert
+20	= Forest
+30	= Water
+40	= Mountain
+
+----
+
+DFFAFA = 2FFAFA = palette pointer table (bank for pointers: DB)
+
+8092E0 = 12E0 = Nintendo logo palette
+
+809320 = 1320 = Taito logo palette
+
+
+----
+
+D0000 = 4x4 map block data
+
+files used for world map:
+DCE51B = #0x28C = world map tiles <-> 8bpp!!!!! XY each 4bit , X = palette, Y = color
+DD8A22 = #0x28D = world block map
+D4E1F7 = #0x194 = Monsterverteilung auf der Map (???)
+B787FE = #0x000 = world map music
+
+RAM 7F4040 = uncompressed World Map Block Data!!
+7FC040 = end
+
+compressed data:
+
+B8D872 = 1C5872 = Nintendo / Taito logos
+
+C9810B = 24810B = Arek Temple tileset
+
+C9AE7D = 24AE7D = Town tileset	(pointer at: B783EA = 1B83EA)
+
+CAC2CB = 2542CB = Cave tileset	(pointer at: B783F0 = 1B83F0)
+
+CE9EE4 = 271EE4 = Basement tileset
+
+D09750 = 281750 = Daos Temple tileset
+
+D3A210 = 29A210 = Battle Background #1 = Wiese
+
+D4D413 = 2A5413 = Battle GUI
+
+D4D848 = 2A5848 = Battle Options
+
+D4DD6C = 2A5D6C = Character Extra Graphics (poisoned, paralyzed etc.)
+
+D9C112 = 2CC112 = Header
+
+DBD900 = 2DD900 = GUI
+
+DBF86D = 2DF86D	= Intro background (BG1 and BG2)
+DCA12E = 2E212E = Trees (Intro BG3)
+DCBD3D = 2E3D3D = Intro sprites
+
+DCD8F5 = 2E58F5 = Menu Items
+
+DD8A22 = 2E8A22 = World Map blocks
+
+DDC953 = 2EC953 = LUFIA logo
+
+DFAED8 = 2FAED8 = One-armed bandit
+
+808EAF = EAF = Decompression routine
+808ECF = EFC = reads first byte
+
+-----------------------------------
+
+
+0x2F308 - Monster-Zornattacken (Namen)
+
+0x12E100 - Kapselmonster-Spezialattacken (Namen)
+
+-------------------------------------
+
+IN DUNGEONS:
+------------
+RAM 7E4000 = Dungeon collision data!!
+
+WxH bytes = flags:
+
+	0x01	=	Maxim / Monster / Character on me
+	0x02	=	Collision (for example a missing bridge part)
+	0x04	=	Trigger
+	0x08	=	Object (column, bush, jug)
+	0x10	=	Y Collision
+	0x20	=	X Collision
+	0x40	=	??? (no collision)
+	0x80	=	??? (collision)
+
+	Ex:	0x21	= Maxim / Monster / Character is on me, cannot move left
+		0x31	= Maxim / Monster / Character is on me, cannot move left or up
+
+Entering the tile: 
+$83/D924
+$83/D924
+$83/DA10
+$83/DA16
+
+Leaving the tile:
+$83/D8CE
+$83/D8CE
+$83/D9F0
+$83/D9F6

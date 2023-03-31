@@ -1,0 +1,6 @@
+Example: 8BA11 (Höhle nach Tarika, Gegengift)
+
+0x00		byte		Map Treasure ID + Flags
+						0x40 = Item-ID |= 0x100
+0x01		byte		Global Chest ID (each chest in the game has a unique ID)
+0x02		byte		Item ID (low byte)

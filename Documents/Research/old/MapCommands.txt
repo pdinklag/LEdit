@@ -1,0 +1,89 @@
+MAP COMMANDS:
+--------
+
+0x00		Ende
+
+0x4B		Musik
+		0x4B [ID]
+			0x00 = Weltkarte
+			0x01 = Schloss
+			0x02 = Kleine Stadt
+			0x03 = Dorf
+			0x04 = Übernachtung
+			0x05 = Turm
+			0x06 = Titelmusik (langsamer?) (-> lag)
+			0x07 = Berti & Boris
+			0x08 = Keller
+			0x09 = Siegelturm
+			0x0A = Daos-Tempel
+			0x0B = Lufia (Mädchen)
+			0x0C = keine Musik
+			0x0D = Intro (-> lag)
+			0x0E = keine Musik
+			0x0F = Hochzeit
+			0x10 = Reisregen (Hochzeit)
+			0x11 = traurig
+			0x12 = Auf hoher See
+			0x13 = Berg
+			0x14 = Wunderwald
+			0x15 = Stadt
+			0x16 = dramatisch
+			0x17 = Höhle
+			0x18 = Kampf
+			0x19 = Kampf (Endgegner)
+			0x1A = Höllenfürst spricht
+			0x1B = Kampf (Höllenfürst)
+			0x1C = Drachentempel?
+			0x1D = Kampf gewonnen
+			0x1E = Warp-Tempel
+			0x1F = 
+			0x20 = Unterwasser
+
+0x68		(= 0x7B ?) Normalerweise für Personen (Monster gehen auch)
+
+0x69		Eintellungen
+		0x69 [ID]
+			0x01 = Dungeon-Modus (Höhle nach Tarika)
+
+			0x08 = Stadt-Modus
+
+			0x11 = Dungeon-Steuerung (Schwert etc)
+
+			0x88 = Stadt-Steuerung (kein Schwert etc)
+
+			0x98 = Stadt-Steuerung (kein Schwert etc)
+
+0x74		Hintergrundbild (für Kampf)
+		0x74 [ID]
+			=> from compressed file #16D + [ID]
+		
+			0x00 = Wüste
+			0x01 = Tiefe Höhle
+			0x02 = Siegelturm
+			0x03 = See
+			0x04 = Wiese
+			0x05 = Tempel
+			0x06 = Berg (Innenbereich) (unbenutzt!?)
+			0x07 = Berg (Außenbereich)
+			0x08 = Daos-Tempel
+			0x09 = Keller
+			0x0A = Turm #1
+			0x0B = Höhle #1 (rötlicher Boden)
+			0x0C = Höhle #2 (z.B. Höhle nach Tarika)
+			0x0D = Wasserhöhle
+			0x0E = Höhle #3 (violett-ähnlicher Boden)
+			0x0F = Satyrfisch
+			0x10 = Höhle #4
+			0x11 = Höhle #5 (mit Pflanzen etc)
+			0x12 = Lavahöhle
+			0x13 = Lavahöhle (Unterschied zu 0x12 ?)
+			0x14 = Höhle #6 (mit verwelkteren Pflanzen)
+			0x15 = Siegelturm (Innenbereich)
+			0x16 = Taru?
+			0x17 = Turm #2
+			0x18 = Dunkelblauer Hintergrund
+
+0x7B		Normalerweise für Monster (Personen gehen auch)
+		0x7B [Preset] [ID]
+			=> Bei normalen Presets wird 0x4F abgezogen!
+			=> Map sprite

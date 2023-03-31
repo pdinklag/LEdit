@@ -1,0 +1,76 @@
+Offset		Type		Desc
+==========================================
+0x00		byte		ItemFlags
+0x01		byte		ItemClass ???
+0x02		byte		ItemUse ???
+0x03		byte		Icon
+0x04		byte		Sprite
+0x05		short		Cost
+0x07		byte		ItemType
+0x08		byte		CharacterFlags
+0x09		word		PropertyFlags
+0x0B		word		???
+Properties
+MenuScript
+BattleScript
+
+
+ItemFlags
+===================
+0x01	Potion
+0x02	Equipment
+0x04	Boots
+0x08	Cursed
+0x10	Fruit
+0x20	Undropable
+0x40	Usable in Menu
+0x80	Usable in Battle
+
+ItemType
+===================
+0x01	Weapon
+0x02	Armor
+0x04	Shield
+0x08	Helmet
+0x10	Ring
+0x20	Jewel
+
+CharacterFlags
+====================
+0x01	Maxim
+0x02	Selan
+0x04	Guy
+0x08	Artea
+0x10	Tia
+0x20	Dekar
+0x40	Lexis
+
+PropertyFlags
+====================
+0x0001	Has Offset to MenuScript
+0x0002	Has Offset to BattleScript
+0x0004	Has Attack extra (?)
+0x0008	Has Defense extra (?)
+0x0010	Has ANG bonus if equipped
+0x0020	Has ABW bonus if equipped
+0x0040	Has STR bonus if equipped
+0x0080	Has BWG bonus if equipped
+0x0100	Has INT bonus if equipped
+0x0200	Has MUT bonus if equipped
+0x0400	Has MGA bonus if equipped
+0x0800	Has Battle Animation
+0x1000	???
+0x2000	Has IP Attack
+0x4000	???
+0x8000	???
+
+RELIQUARY:
+0x0800	unused
+0x1000	unused
+0x2000	Has Battle Animation
+0x4000	Has Unknown property
+0x8000	Has IP Attack
+
+Properties
+====================
+a short for each set PropertyFlag	

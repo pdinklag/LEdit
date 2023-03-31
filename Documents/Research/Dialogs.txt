@@ -1,0 +1,537 @@
+Map dialogs:
+------------
+0x00	ushort		PH (signature)
+
+0x02	ushort		Pointer to ???				Read 3 times when the map loads
+												Read when a door opens
+						byte ID (zero-based)
+						ushort Pointer
+
+0x04	ushort		???							Read when you enter the map for the first time? (intro in Taia)
+
+0x06	ushort		Pointer to Dialog data		Read when you talk to somebody or you touch a monster
+						byte CharacterID (0x50-based)
+						ushort Pointer
+
+0x08	ushort		Pointer to Trigger data		Read everytime you move in a trigger zone!!!
+						byte TriggerID (?)
+						ushort Pointer
+
+0x0A	ushort		Pointer to ???				When read?
+
+0x0C	ushort		Pointer to ???
+
+All pointers relative from "PH"
+
+Dialog data
+-----------
+struct:
+	0x00	byte	Character ID (e.g. 0x51)
+	0x01	ushort	Pointer to dialog script
+	
+... until Character ID 0xFF is found
+
+
+Trigger data
+------------
+struct:
+	0x00	byte	Trigger ID
+	0x01	ushort	Pointer to trigger script?
+	
+... until Trigger ID 0xFF is found
+
+
+======================
+Dialog scripts
+======================
+00				End
+
+01				Wait for input and continue
+
+02  			!!!CRASH!!!
+
+03				\n
+
+04 XX			Pause
+				XX = Duration... <= 0x80 = no time, 0x81 = short, 0x82 = little longer, etc
+				
+05 XX			(only for text mode)
+06 XX			(only for text mode)
+07 XX			???
+
+08				Reliquary: "The character you're talking to speaks."
+
+09				(only for text mode)
+
+0A XX YY		???
+
+0B				(only for text mode)
+
+0C				(only for text mode)
+
+0D				(only for text mode)
+
+0E				(only for text mode)
+
+0F				(only for text mode)
+
+10 XX			Define XX selection choices, + XX pointers à 2 bytes
+
+11				!!!CRASH!!!
+
+12 XX YY		???, + YY pointers à 2 bytes
+
+13 XX			Reliquary: "Character XX speaks spontanously"
+
+14 XX YY ZZ UU VV WW		???
+
+15 XX YY YY		Jump if event flag set
+				XX = event flag
+				YYYY = offset, absolute in context
+				
+16 XX YY ZZ		Reliquary: "go to map number #$XX; jump to part #$YY of the script (?); "screen at position" #$ZZ (???)"
+
+17 XX			(XX == 0) Rest
+
+18 XX			Enter shop menu
+				XX = shop index (00 = Tias shop, 01 = 1. Zauberladen etc)
+
+19 XX			Enter church menu (XX = ?)
+
+1A XX			Set event flag
+				XX = event flag
+				
+1B XX			Clear event flag
+				XX = event flag
+
+1C XX XX		Jump
+				XXXX = offset, absolute in context
+
+1D XX XX		???
+1E XX XX		???
+1F XX XX		???
+
+20 XX YY		Add item to inventory
+				XX = Item index
+				YY = Amount	
+				
+21 XX YY		Add item to inventory
+				(XX | 0x100) = Item index
+				YY = Amount
+				
+22 XX XX		Add gold
+				XX XX = Amount
+				
+23 XX YY		Party member learns spell
+				XX = party member (00 = Maxim, 01 = Selan, ...)
+				YY = Spell index
+
+24 XX YY		Remove item from inventory
+				XX = Item index
+				YY = Amount	
+				
+25 XX			???
+
+26 XX XX		Remove gold
+				XX XX = Amount
+				
+27 XX YY		???
+28 XX			???
+29 XX YY ZZ		???
+2A XX YY ZZ		???
+
+2B XX			Party member joins the party
+				XX = Party Member (00 = Maxim, 01 = Selan, ...)
+
+2C XX			Party member leaves the party
+				XX = Party Member (00 = Maxim, 01 = Selan, ...)
+
+2D XX			???
+2E XX			???
+2F XX YY ZZ		???
+
+30 XX YY		Move character to preset
+				XX = character index (on map)
+				YY = preset number
+				
+31 XX YY		Character turns
+				XX = character index (on map)
+				YY = direction (01 = N, 02 = S, 03 = W, 04 = E)
+			
+32 XX YY		Character stands still
+				XX = character index (on map)
+				YY = direction (05 = N, 06 = S, 07 = W, 08 = E)
+
+33 XX YY		Character walks character path ???
+				XX = path index
+				YY = character
+
+34 XX YY		Change map sprite of character
+				XX = character
+				YY = map sprite index
+				
+35 XX YY ZZ		???
+36 XX			???
+
+37 XX			Wait
+				XX = duration, 0x10 = about 1 second
+38 XX			Wait
+				XX = duration, 0x01 = about 3 seconds
+
+39				???
+
+3A XX YY		Go to coords x, y on the map and scroll back to Maxim
+				XX = x
+				YY = y
+3B XX			Go to preset location XX and scroll back to Maxim
+				XX = preset ID
+
+3C				Party hides behind Maxim
+3D				Party INSTANTLY hides behind Maxim
+
+3E				???
+3F				???
+40				???
+41 XX YY		???
+42				same as 00
+43 XX YY		???
+44 XX YY ZZ		???
+45 XX YY ZZ		???
+46 XX YY ZZ		???
+
+47 XX			Set text box border
+				XX = style (00 = normal, 10 = think, 20 = ???, ...)
+
+48 XX YY		???
+49 XX			???
+4A XX			??? (Reliquary: related to  the appearance of text in text boxes)
+
+4B XX			Set map music
+				XX = music
+
+4C XX			Play sound
+				XX = Sound index
+
+4D XX			???
+4E				???
+4F XX			???
+50				???
+51				???
+52 XX			???
+
+53 XX			Boss battle
+				XX = Boss party index (00 = Amon, 01 = Echsenmann, ...)
+
+54 XX			??? (Reliquary: related to the door in "Tia, are you home?")
+55 XX			???
+
+56				Stop Earthquake
+
+57				???
+
+58 XY			Fade effect
+				XX = effect id
+					X = steps (0 = none / go to clear, 1 = many steps, F = no steps)
+					Y = speed (0 = fast, F = slow
+
+59 XX			Set brightness
+				XX = flags
+					0x00 to 0x7F = fade from darkness to lightness... 10 = fast, 1F = slow
+					0x80 = complete darkness
+					0xFF = complete lightness
+
+5A XX YY ZZ		Start Earthquake
+				XX = ??? (unused?)
+				YY = Strength
+				ZZ = Shaking speed
+
+5B XX YY		???
+5C				!!!CRASH!!!
+5D				!!!CRASH!!!
+5E XX			??? (End)
+5F XX			???
+60 XX			???
+
+61				Maxim speaks (=> TEXT MODE)
+62				Selan speaks (if unavailable, nearest character?) (=> TEXT MODE)
+...
+67				Lexis speaks
+
+68 XX YY		Create character (map pre-script)
+				XX = Character number (XX - 0x50 = preset id to use)
+				YY = Map sprite
+				
+69 XX			???
+
+6A XX YY YY		Jump if event flag clear
+				XX = event flag
+				YYYY = offset, absolute in context
+				
+6B				???
+
+6C XX YY ZZ		Set (permanent) character position offset
+				XX = character
+				YY = X in PIXELS!
+				ZZ = Y in PIXELS!
+
+6D XX YY		??? (Reliquary: display text like "Main programmer")
+6E XX YY		??? (Reliquary: display text like "Akihiro Suzuki")
+
+6F XX			Change map music
+				XX = music
+				
+70				Turn music off (fade out)
+
+71				???
+72				??? (Reliquary: sound-related)
+
+73 XX YY		Display animation
+				XX = animation
+					00 = Bomb explodes #1
+					01 = Erim turns into light ball
+					02 = Sword (always plays at Maxim)
+					03 = nothing
+					04 = Bomb explodes #2
+					05 = Hook (always plays at Maxim)
+					06 = nothing
+					07 = nothing
+					08 = Bomb gets thrown
+					09 = Spawn star particle (at Maxim?)
+					0A = Spawn star particle (at Maxim?)
+					0B = Flame lights up
+					0C = Bush gets destroyed
+					0D = Spawn star particle (at Maxim?)
+					0E = nothing
+					0F = nothing
+					... (INVESTIGATE)
+					1C = Dual Blade warps in
+				YY = (some pre-set location => CHECK MAP HEADERS)
+
+74 XX			Set battle background (pre-script)
+				XX = background
+				
+75				???
+76				???
+77 XX			???
+78				???
+79				???
+	
+7A XX YY		Set character sprite frame
+				XX = character
+				YY = frame
+				
+7B XX YY		same as 68 ?
+
+7C XX			Set ship mode
+				XX = mode
+					00 = normal
+					01 = submarine
+					02 = submarine + blimp
+					
+7D XX			Set ship position mode
+				XX = mode
+					00 = ship is at x, y
+					01 = ship is at Treadool (Portravia??)
+					
+7E XX			Set ship availability
+				XX = availability
+					00 = ship is on map
+					FF = ship is not on map
+
+7F XX			Set party in ship when it exits town
+				XX = yes/no
+					FF = yes
+					00 = no
+
+80 XX			Set ship map sprite
+				XX = map sprite
+				
+81 XX			Capsule monster joins your party
+				XX = CM
+				
+82				???
+83				???
+84				???
+85 XX YY		???
+
+86 XX YY		Character does something
+				XX = character
+				YY = movement
+					00 = walk north
+					01 = walk south
+					02 = walk west
+					03 = walk east
+					04 = north (only anim)
+					05 = south (only anim)
+					06 = west (only anim)
+					07 = east (only anim)
+					08 = south (backwards)
+					09 = jumps south (3 down)
+					0A = jumps west (1 left, 2 down)
+					0B = jumps east (1 right, 2 down)
+					0C = picks something up north
+		
+---
+			
+87 XX YY		???
+88				???
+89 XX			???
+8A		 		???
+8B XX YY ZZ		???
+8C XX YY ZZ		???
+8D XX YY ZZ UU VV WW ???
+8E XX YY ZZ		???
+8F XX YY ZZ		???
+90 XX YY ZZ		???
+91 XX YY 		???
+92 XX	 		???
+93 XX YY ZZ		???
+94 XX YY ZZ		???
+95 XX YY ZZ		???
+96 XX YY ZZ		???
+97				???
+98 XX YY 		???
+99 XX			???
+9A XX			???
+9B XX YY ZZ UU VV ???
+9C XX YY ZZ		???
+9D XX			???
+9E XX			open a dialog window
+				XX = Y screen offset
+				(=> TEXT MODE)
+9F XX YY ZZ		???
+A0 XX YY ZZ UU VV WW ???
+A1 XX YY 		???
+A2 XX	 		???
+A3 XX YY 		???
+A4				Pixelization of screen (Reliquary)
+A5				???
+A6				???
+A7 XX			???
+A8 XX			???
+A9 XX YY		???
+AA				???
+AB XX			???
+AC XX YY		???
+AD				???
+AE XX			???
+AF XX YY		???
+B0 XX			???
+B1 XX YY		???
+B2 XX YY		???
+B3 XX			???
+B4 XX YY ZZ		???
+B5				???
+B6 XX YY		???
+B7 XX			???
+B8				???
+B9 XX			???
+BA XX			???
+BB				Show report (no return!)
+BC				??? (EXIT)
+BD XX YY		???
+BE XX			??? (same as 77)
+BF XX YY ZZ		???
+C0 XX YY ZZ		???
+C1 XX YY		???
+C2 XX YY ZZ UU VV WW		???
+C3 XX YY ZZ UU VV WW		???
+C4 XX YY		Scroll screen to x, y
+				XX = x
+				YY = y
+C5				???
+C6 XX YY		???
+C7				???
+C8 XX YYY ZZ UU VV WW AA
+C9 XX YYY ZZ UU VV WW AA
+CA XX YY ZZ		???
+CB XX			???
+CC				???
+
+
+---
+E0				Battle message start ?
+
+
+*** SPECIAL CHARACTERS (for text mode)
+======================================
+Code		Replacement
+-------------------------
+00			(quit text mode and end)
+01			(quit text mode, wait for input and continue)
+02			!!!CRASH!!!
+03			\n
+04			!!!DO NOT USE!!!
+05 XX		String from String table at $8E:EA00, XX = index
+06 XX		String from String table at $8E:EA00, XX + 0x100 = index
+07 XX		Japanese character??? (XX = code?)
+08			!!!DO NOT USE!!!
+09			Player name
+0A			???
+0B			Selection
+0C			?\n
+0D			!\n
+0E			,\n
+0F			.\n
+10			À
+11			Á
+12			È
+13			É
+14			Ë
+15			Ï
+16			Ò
+17			Ó
+18			Ö
+19			Ù
+1A			Ú
+1B			Ü
+1C			à
+1D			á
+1E			è
+1F			é
+20			[ASCII] (space)
+21			[ASCII] !
+22			ë
+23			ï
+24			ò
+25			[ASCII] %
+26			ó
+27			[ASCII] '
+28			ö
+29			ù
+2A			ú
+2B			-
+2C			[ASCII] ,
+2D			[ASCII] -
+2E			[ASCII] .
+2F			[ASCII] /
+30 - 39		[ASCII] 0 - 9
+3A			[ASCII] :
+3B			ü
+3C			ä
+3D			Ä
+3E			í
+3F			[ASCII] ?
+40			(undefined -> box)
+41 - 5A		[ASCII] A - Z
+5B			(
+5C			ñ
+5D			)
+5E			Ñ
+5F			[ASCII] _
+60			¿
+61 - 7A		[ASCII] a - z
+7B			" (quote begin)
+7C			ß
+7D			" (quote end)
+7E			ê
+7F			¡
+(80 | XX)	String from String table at $8E:EA00, XX + 0x200 = index
+
+Stringtable:
+$8E:EA00	0x76A00 => entries can use special characters and therefore cross references!
+
+Another Stringtable:
+$9E:C7E8	0xF47E8
+
+Refered by code at $80/C750

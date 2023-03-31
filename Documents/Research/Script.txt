@@ -1,0 +1,105 @@
+LUFIA 2 SCRIPTS
+
+Command			Description				Extra Data
+---------------------------------------------------------
+0x05			Chance					byte Chance (out of 255)
+										word Success (jump here)
+
+0x0C			???						word ???
+										byte ???
+
+0x1E			Monster: Special Attack	byte MonsterAttackID
+										byte ???
+										=> only triggered if enough IP
+
+0x21			Do Damage				short ???
+										short Amount
+										byte ???
+
+0x22			???						
+
+0x24			Fortify Attribute		byte Attribute
+				Static						0x00 = HP
+											0x01 = MP
+											0x02 = Max HP
+											0x03 = Max MP
+											0x04 = ANG
+											0x05 = ABW
+											0x06 = STR
+											0x07 = BWG
+											0x08 = INT
+											0x09 = MUT
+											0x0A = MGA
+
+										short Amount
+										byte ???
+
+0x25			Fortify Attribute		byte Attribute
+				This Battle only					
+										short Amount
+										short ???
+
+0x26			Cure Effect				byte EffectID
+											0x00 = Poisoned
+											0x01 = "..."
+											0x02 = Dead
+											0x03 = Paralyzed
+											0x04 = Confused
+											0x05 = Sleeping
+										byte Chance (out of 100)
+
+0x27			Cause Effect			byte EffectID
+										byte Chance (out of 100)
+
+0x28			Action Sequence			byte WhatToDo
+											0x00 = End
+											0x01 = Another action
+
+0x2A			Monster: Flee			byte ??? (0x00)
+
+0x2C			Monster: Cast Spell		byte SpellID
+										byte ??? (0x04)
+
+0x2D			Monster: Reinforcement	byte MonsterID
+										byte ??? (0x04)
+
+0x32			AntiCategory			byte CategoryID
+				/ Monster: Attack
+
+0x35			Effect					byte ID
+				in Menu						0x00 = ???
+											0x01 = Warp (only to be used alone)
+											0x02 = Flee (only to be used alone)
+											0x03 = ???
+											0x04 = HP Bonus
+											0x05 = HP Bonus
+											0x06 = MP Bonus
+											0x07 = MP Bonus
+											0x08 = FULL
+											0x09 = Max KP Bonus
+											0x0A = Max MP Bonus
+											0x0B = ANG (+ FULL in menu)
+											0x0C = ABW (+ FULL in menu)
+											0x0D = STR Bonus
+											0x0E = BWG Bonus
+											0x0F = INT Bonus
+											0x10 = MUT Bonus
+											0x11 = MGA Bonus
+											0x12 = (none)
+											0x13 = Antipoison Potion (nothing to see)
+											
+											0x17 = Terror
+											
+											0x19 = Cause Sleeping
+											
+											0x1C = Cause "..."
+											
+											0x24 = Origin
+											0x25 = Cure Curse
+											
+0x3C			Wait until
+				effect complete (spells)
+
+0x41			Monster: Wait
+
+0x42			SetCategory					byte CategoryID

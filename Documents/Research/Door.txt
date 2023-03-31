@@ -1,0 +1,8 @@
+Door unknown values:
+
+unknown2 - door opening sound:
+0x00 - Wooden interior door
+0x01 - heavy stone door
+0x02 - some usually sounding door
+0x?? - all the same
+0xFF - Standard door

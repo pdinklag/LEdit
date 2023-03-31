@@ -1,0 +1,15 @@
+~ $7E:4100: Map Collision Data
+
+Map Collision:
+--------------
+
+Flag		Meaning
+=====================================
+0x01		Character (Player / Monster)
+0x02		???
+0x04		???
+0x08		Bush (Object?)
+0x10		Y Collision (top side)
+0x20		X Collision (left side)
+0x40		???
+0x80		???
